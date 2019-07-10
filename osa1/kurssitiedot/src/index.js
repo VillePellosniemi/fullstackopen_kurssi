@@ -1,6 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+const Header = ({coursename}) => {
+  return (
+      <h1>{coursename}</h1>
+  )
+};
+
+const Content = ({titles}) => {
+  return (
+      <div>
+        <p>{titles}</p>
+      </div>
+  )
+};
+
+const Total = ({numberofexercises}) => {
+  return (
+      <div>
+        <p>Total amount of exercises: {numberofexercises}</p>
+      </div>
+  )
+};
+
+
 const App = () => {
   const course = {
     name: 'Half Stack application development',
@@ -18,37 +41,13 @@ const App = () => {
         exercises: 14
       }
     ]
-  }
-
-  const Header = (props) => {
-    console.log(props);
-    return (
-        <h1>{props.course.name}</h1>
-    )
-  };
-
-  const Content = (props) => {
-    console.log(props);
-    return (
-        <div>
-          <p>{course.parts.map(value =><React.Fragment> {value.name} {value.exercises} <br/> </React.Fragment>)}</p>
-        </div>
-    )
-  };
-
-  const Total = () => {
-    return (
-        <div>
-          <p>Total amount of exercises: {course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}</p>
-        </div>
-    )
   };
 
   return (
       <div>
-        <Header course={course} />
-        <Content parts={course.parts} />
-        <Total parts={course.parts} />
+        <Header coursename={course.name} />
+        <Content titles={course.parts.map(value =><React.Fragment> {value.name} {value.exercises} <br/> </React.Fragment>)} />
+        <Total numberofexercises={course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises}/>
       </div>
   )
 };
